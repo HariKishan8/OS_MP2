@@ -1,0 +1,14 @@
+#include "paging_low.H"
+#include "page_table.H"
+void load()
+{
+
+write_cr3(page_directory);
+
+}
+
+PageTable::static void enable_paging()
+{
+ //long temp= long read_cr0() 
+ write_cr0(read_cr0() | 0x80000000);
+}
