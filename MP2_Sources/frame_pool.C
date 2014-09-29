@@ -1,29 +1,38 @@
 #include "frame_pool.H"
+
 FramePool:: FramePool(unsigned long _base_frame_no,
              unsigned long _nframes,
              unsigned long _info_frame_no)
 
 {
 	
-this._base_frame_no = _base_frame_no;
-this._nframes = _nframes;
-if (_info_frame_no !=0)
+	this._base_frame_no = _base_frame_no;
+	this._nframes = _nframes;
+	if (_info_frame_no !=0)
+	{
+		this._info_frame_no=_info_frame_no;
+	}
+	else
+	{
+		this._info_frame_no=0x00200000;
+	}
+}
+
+unsigned long get_frame()
 {
-this._info_frame_no=_info_frame_no;
-}
-else
-{
-this._info_frame_no=0x00200000;
-}
+
 }
 
-FramePool:: get_frame()
+void mark_inaccessible(unsigned long _base_frame_no,
+                          unsigned long _nframes)
 {
 
-	if (
-
 }
 
+void FramePool:: release_frame(unsigned long _frame_no)
+{
+
+}
 
 /*
  

@@ -69,8 +69,6 @@ public:
   */
 
   void load();
-
-
   /* Makes the given page table the current table. This must be done once during
      system startup and whenever the address space is switched (e.g. during
      process switching). */

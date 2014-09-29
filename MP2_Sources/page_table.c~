@@ -1,14 +1,43 @@
 #include "paging_low.H"
 #include "page_table.H"
+
+PageTable::PageTable * current_page_table; /* pointer to currently loaded page table object */
+PageTable::static unsigned int    paging_enabled;     /* is paging turned on (i.e. are addresses logical)? */
+PageTable::static FramePool     * kernel_mem_pool;    /* Frame pool for the kernel memory */
+PageTable::static FramePool     * process_mem_pool;   /* Frame pool for the process memory */
+PageTable::static unsigned long   shared_size;        /* size of shared address space */
+
+/* Set the global parameters for the paging subsystem. */
+void PageTable:: init_paging(FramePool * _kernel_mem_pool,
+                             FramePool * _process_mem_pool,
+                             const unsigned long _shared_size);
+{
+	this._kernel_mem_pool = _kernel_mem_pool;
+	this._process_mem_pool = _process_mem_pool;
+	this._shared_size = _shared_size;
+
+}
+
+PageTable::PageTable();
+{
+ 	
+}
+
 void load()
 {
-
-write_cr3(page_directory);
+	write_cr3(page_directory);
 
 }
 
-PageTable::static void enable_paging()
+void PageTable:: enable_paging()
 {
- //long temp= long read_cr0() 
- write_cr0(read_cr0() | 0x80000000);
+ 	//long temp = long read_cr0() 
+ 	write_cr0(read_cr0() | 0x80000000);
 }
+
+/* The page fault handler. */
+void PageTable:: handle_fault(REGS * _r)
+{
+
+}
+

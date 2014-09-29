@@ -40,7 +40,10 @@ class FramePool {
 
 private:
      /* -- DEFINE YOUR FRAME POOL DATA STRUCTURE(s) HERE. */
-     
+     static unsigned char *bitmap; 
+     static unsigned long base_address;
+     static unsigned long size;
+
 public:
   
    FramePool(unsigned long _base_frame_no,
